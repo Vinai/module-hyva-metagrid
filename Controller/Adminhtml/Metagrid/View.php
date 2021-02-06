@@ -20,7 +20,7 @@ class View extends Action
     {
         parent::__construct($context);
         $this->pageFactory = $pageFactory;
-        $this->request = $request;
+        $this->request     = $request;
     }
 
     public function execute()

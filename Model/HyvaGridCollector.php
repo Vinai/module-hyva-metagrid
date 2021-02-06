@@ -45,18 +45,17 @@ class HyvaGridCollector
 
     private function buildGridDataForArea(string $area)
     {
-        $gridDirs  = $this->appState->emulateAreaCode($area, fn () => $this->hyvaGridDirs->list());
+        $gridDirs  = $this->appState->emulateAreaCode($area, fn() => $this->hyvaGridDirs->list());
         $gridFiles = $this->getAllGridFiles($gridDirs);
         return values(reduce($gridFiles, function (array $map, string $file) use ($area): array {
             $gridName = substr(basename($file), 0, -4);
             if (!isset($map[$gridName])) {
-                $map[$gridName]['gridName'] = $gridName;
-                $map[$gridName]['area']      = $area;
-
                 $gridDefinition                = $this->gridDefinitionFactory->create(['gridName' => $gridName]);
-                $map[$gridName]['sourceType'] = keys($gridDefinition->getSourceConfig())[0];
+                $map[$gridName]['gridName']    = $gridName;
+                $map[$gridName]['area']        = $area;
+                $map[$gridName]['sourceType']  = keys($gridDefinition->getSourceConfig())[0];
                 $map[$gridName]['source']      = values($gridDefinition->getSourceConfig())[0];
-                $map[$gridName]['ajaxEnabled']  = ($gridDefinition->getNavigationConfig()['@isAjaxEnabled'] ?? '') !== 'false';
+                $map[$gridName]['ajaxEnabled'] = ($gridDefinition->getNavigationConfig()['@isAjaxEnabled'] ?? '') !== 'false';
             }
             $map[$gridName]['modules'][] = $this->extractModuleName($file);
 
@@ -66,7 +65,7 @@ class HyvaGridCollector
 
     private function getAllGridFiles(array $dirs): array
     {
-        return merge([], ...map(fn (string $dir): array => glob($dir . '/*.xml'), $dirs));
+        return merge([], ...map(fn(string $dir): array => glob($dir . '/*.xml'), $dirs));
     }
 
     private function extractModuleName(string $gridXmlFile): string
