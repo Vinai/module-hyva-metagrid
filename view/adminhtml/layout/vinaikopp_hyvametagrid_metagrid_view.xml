@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="hyva_admin_grid"/>
+    <body>
+        <referenceContainer name="content">
+            <block name="back-button" template="VinaiKopp_HyvaMetaGrid::back-button.phtml"/>
+            <block class="VinaiKopp\HyvaMetaGrid\Block\Adminhtml\HyvaGridView" name="hyva_grid_view"/>
+        </referenceContainer>
+    </body>
+</page>

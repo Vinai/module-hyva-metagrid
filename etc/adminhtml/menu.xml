@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="VinaiKopp_HyvaMetaGrid:list" title="Hyvä Grid List" translate="title" module="VinaiKopp_HyvaMetaGrid"
+             parent="Magento_Backend::system_tools"
+             sortOrder="10" dependsOnModule="Hyva_Admin" resource="VinaiKopp_HyvaMetaGrid::view"
+             action="vinaikopp_hyvametagrid/metagrid/list"/>
+    </menu>
+</config>

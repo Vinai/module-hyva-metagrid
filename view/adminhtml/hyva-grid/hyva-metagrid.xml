@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<grid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Hyva_Admin:etc/hyva-grid.xsd">
+    <source>
+        <arrayProvider>\VinaiKopp\HyvaMetaGrid\Model\HyvaMetaGridArrayProvider</arrayProvider>
+    </source>
+    <columns>
+        <include keepAllSourceColumns="true">
+            <column name="gridName" type="long_text"/>
+            <column name="area"/>
+            <column name="sourceType"/>
+            <column name="source" type="long_text"/>
+            <column name="ajaxEnabled" label="Ajax enabled?" type="bool"/>
+        </include>
+    </columns>
+    <actions idColumn="gridName">
+        <action id="view" label="View" url="*/*/view" idParam="grid_name"/>
+    </actions>
+    <navigation>
+        <pager enabled="false"/>
+    </navigation>
+</grid>

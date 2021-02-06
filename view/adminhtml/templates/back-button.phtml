@@ -1,0 +1,9 @@
+<?php declare(strict_types=1);
+
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+?>
+<div>
+    <a href="<?= $block->getUrl('*/*/list') ?>"><?= $escaper->escapeHtml(__('Back to List')) ?></a>
+</div>

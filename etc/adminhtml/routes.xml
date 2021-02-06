@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="vinaikopp_hyvametagrid" frontName="vinaikopp-hyvagrids">
+            <module name="VinaiKopp_HyvaMetaGrid"/>
+        </route>
+    </router>
+</config>
