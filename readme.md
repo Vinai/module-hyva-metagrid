@@ -1,10 +1,10 @@
 
 # Purpose
 
-This module provides a grid listing all Hyva grids defined in a Magento Store.
-The list can be found at Systm > Tools > Hyvä Grid List
+This module provides a grid listing all Hyva grids defined in a Magento Store.  
+The list can be found at System > Tools > Hyvä Grid List.
 
-Please note, this module is more a playful proof of concept and probably really useful.  
+Please note, this module is a playful proof of concept, and probably is really useful...  
 
 
 ## Stability
