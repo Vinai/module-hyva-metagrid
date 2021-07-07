@@ -12,7 +12,10 @@ class ListAction extends Action implements HttpGetActionInterface
 {
     const ADMIN_RESOURCE = 'VinaiKopp_HyvaMetaGrid::view';
 
-    private PageFactory $pageFactory;
+    /**
+     * @var PageFactory
+     */
+    private $pageFactory;
 
     public function __construct(Context $context, PageFactory $pageFactory)
     {

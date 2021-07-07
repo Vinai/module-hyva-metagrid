@@ -6,7 +6,10 @@ use Hyva\Admin\Api\HyvaGridArrayProviderInterface;
 
 class HyvaMetaGridArrayProvider implements HyvaGridArrayProviderInterface
 {
-    private HyvaGridCollector $hyvaGridCollector;
+    /**
+     * @var HyvaGridCollector
+     */
+    private $hyvaGridCollector;
 
     public function __construct(HyvaGridCollector $hyvaGridCollector)
     {

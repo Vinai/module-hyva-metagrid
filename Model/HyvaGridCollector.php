@@ -16,15 +16,30 @@ use Magento\Framework\Component\ComponentRegistrarInterface;
 
 class HyvaGridCollector
 {
-    private HyvaGridDirs $hyvaGridDirs;
+    /**
+     * @var HyvaGridDirs
+     */
+    private $hyvaGridDirs;
 
-    private AppState $appState;
+    /**
+     * @var AppState
+     */
+    private $appState;
 
-    private ComponentRegistrarInterface $componentRegistrar;
+    /**
+     * @var ComponentRegistrarInterface
+     */
+    private $componentRegistrar;
 
-    private HyvaGridInterfaceFactory $gridFactory;
+    /**
+     * @var HyvaGridInterfaceFactory
+     */
+    private $gridFactory;
 
-    private HyvaGridDefinitionInterfaceFactory $gridDefinitionFactory;
+    /**
+     * @var HyvaGridDefinitionInterfaceFactory
+     */
+    private $gridDefinitionFactory;
 
     public function __construct(
         HyvaGridDirs $hyvaGridDirs,
@@ -45,7 +60,9 @@ class HyvaGridCollector
 
     private function buildGridDataForArea(string $area)
     {
-        $gridDirs  = $this->appState->emulateAreaCode($area, fn() => $this->hyvaGridDirs->list());
+        $gridDirs  = $this->appState->emulateAreaCode($area, function () {
+            return $this->hyvaGridDirs->list();
+        });
         $gridFiles = $this->getAllGridFiles($gridDirs);
         return values(reduce($gridFiles, function (array $map, string $file) use ($area): array {
             $gridName = substr(basename($file), 0, -4);
@@ -54,7 +71,9 @@ class HyvaGridCollector
                 $map[$gridName]['gridName']    = $gridName;
                 $map[$gridName]['area']        = $area;
                 $map[$gridName]['sourceType']  = keys($gridDefinition->getSourceConfig())[0];
-                $map[$gridName]['source']      = values($gridDefinition->getSourceConfig())[0];
+                $map[$gridName]['source']      = isset($gridDefinition->getSourceConfig()['query'])
+                    ? 'table: ' . $gridDefinition->getSourceConfig()['query']['select']['from']['table']
+                    : values($gridDefinition->getSourceConfig())[0];
                 $map[$gridName]['ajaxEnabled'] = ($gridDefinition->getNavigationConfig()['@isAjaxEnabled'] ?? '') !== 'false';
             }
             $map[$gridName]['modules'][] = $this->extractModuleName($file);
@@ -65,7 +84,9 @@ class HyvaGridCollector
 
     private function getAllGridFiles(array $dirs): array
     {
-        return merge([], ...map(fn(string $dir): array => glob($dir . '/*.xml'), $dirs));
+        return merge([], ...map(function (string $dir): array {
+            return glob($dir . '/*.xml');
+        }, $dirs));
     }
 
     private function extractModuleName(string $gridXmlFile): string

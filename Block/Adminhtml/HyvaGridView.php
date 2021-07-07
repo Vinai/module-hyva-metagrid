@@ -10,7 +10,10 @@ use Magento\Framework\View\Element\Template;
 
 class HyvaGridView extends HyvaGrid
 {
-    private RequestInterface $request;
+    /**
+     * @var RequestInterface
+     */
+    private $request;
 
     public function __construct(
         Template\Context $context,

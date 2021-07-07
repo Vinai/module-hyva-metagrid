@@ -12,9 +12,15 @@ class View extends Action
 {
     const ADMIN_RESOURCE = 'VinaiKopp_HyvaMetaGrid::view';
 
-    private PageFactory $pageFactory;
+    /**
+     * @var PageFactory
+     */
+    private $pageFactory;
 
-    private RequestInterface $request;
+    /**
+     * @var RequestInterface
+     */
+    private $request;
 
     public function __construct(Context $context, PageFactory $pageFactory, RequestInterface $request)
     {
